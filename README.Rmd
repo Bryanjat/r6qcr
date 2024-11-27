@@ -32,10 +32,14 @@ pak::pak("Bryanjat/r6qcr")
 ## Example
 
 ```{r}
-#### fdqcd (Functional data quality control) 
-
+## librerias
 library(qcr)
+```
 
+
+### fdqcd (Functional data quality control) 
+
+```{r}
 m <- 30
 tt<-seq(0,1,len=m) # Crea un vector de 0 1 partido en 30
 mu<-30 * tt * (1 - tt)^(3/2) 
@@ -48,5 +52,26 @@ fdchart <- fdqcd(mdata)
 plot(fdchart,type="l",col="red")
 ```
 
+### npqcs.r
+
+This function is used to compute statistics required by the r chart.
+
+```{r}
+set.seed(356)
+mu<-c(0,0)
+Sigma<- matrix(c(1,0,0,1),nrow = 2,ncol = 2)
+u <- c(2,2)
+S <- matrix(c(4,0,0,4),nrow = 2,ncol = 2)
+G <- rmvnorm(540, mean = mu, sigma = Sigma)
+x<- rmvnorm(40,mean=u,sigma = S)
+x <- rbind(G[501:540,],x)
+M <- G[1:500,]
+data.npqcd <- npqcd(x,M)
+str(data.npqcd)
+res.npqcs <- npqcs.r(data.npqcd,method = "Liu", alpha=0.025)
+str(res.npqcs)
+summary(res.npqcs)
+plot(res.npqcs,title =" r Control Chart")
+```
 
 
