@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of r6qcr is to …
+La meta de r6qcr es poder realizar una clase madre con otros paquetes
 
 ## Installation
 
@@ -20,33 +20,63 @@ pak::pak("Bryanjat/r6qcr")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
-library(r6qcr)
-## basic example code
+#### fdqcd (Functional data quality control) 
+
+library(qcr)
+#> Warning: package 'qcr' was built under R version 4.3.3
+#> Loading required package: qcc
+#> Warning: package 'qcc' was built under R version 4.3.3
+#> Package 'qcc' version 2.7
+#> Type 'citation("qcc")' for citing this R package in publications.
+#> Loading required package: fda.usc
+#> Loading required package: fda
+#> Warning: package 'fda' was built under R version 4.3.3
+#> Loading required package: splines
+#> Loading required package: fds
+#> Warning: package 'fds' was built under R version 4.3.3
+#> Loading required package: rainbow
+#> Warning: package 'rainbow' was built under R version 4.3.3
+#> Loading required package: MASS
+#> Loading required package: pcaPP
+#> Warning: package 'pcaPP' was built under R version 4.3.3
+#> Loading required package: RCurl
+#> Warning: package 'RCurl' was built under R version 4.3.3
+#> Loading required package: deSolve
+#> Warning: package 'deSolve' was built under R version 4.3.3
+#> 
+#> Attaching package: 'fda'
+#> The following object is masked from 'package:graphics':
+#> 
+#>     matplot
+#> Loading required package: mgcv
+#> Loading required package: nlme
+#> Warning: package 'nlme' was built under R version 4.3.3
+#> This is mgcv 1.9-0. For overview type 'help("mgcv-package")'.
+#> Loading required package: knitr
+#> Warning: package 'knitr' was built under R version 4.4.0
+#>  fda.usc is running sequentially usign foreach package
+#>  Please, execute ops.fda.usc() once to run in local parallel mode
+#>  Deprecated functions: min.basis, min.np, anova.hetero, anova.onefactor, anova.RPm
+#>  New functions: optim.basis, optim.np, fanova.hetero, fanova.onefactor, fanova.RPm
+#> ----------------------------------------------------------------------------------
+#> Loading required package: mvtnorm
+#> Warning: package 'mvtnorm' was built under R version 4.4.0
+#> 
+#>  Package qcr: Quality Control Review 
+#>  version 1.4 (built on 2022-02-15).
+#>  Copyright Miguel A. Flores Sanchez 2016-2022.
+
+m <- 30
+tt<-seq(0,1,len=m) # Crea un vector de 0 1 partido en 30
+mu<-30 * tt * (1 - tt)^(3/2) 
+n0 <- 100
+set.seed(12345) # Semilla
+mdata<-matrix(NA,ncol=m,nrow=n0) # Crea una matriz de NA  de nxm
+sigma <- exp(-3*as.matrix(dist(tt))/0.9)
+for (i in 1:n0) mdata[i,]<- mu+0.5*mvrnorm(mu = mu,Sigma = sigma )
+fdchart <- fdqcd(mdata)
+plot(fdchart,type="l",col="red")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
