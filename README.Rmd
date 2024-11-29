@@ -13,14 +13,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-# r6qcr
+# Descripcion general
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-La meta de r6qcr es poder realizar una clase madre con otros paquetes
+El paquete qcr en R tiene como propósito principal ofrecer herramientas para crear y analizar gráficos de control de calidad. Está orientado a simplificar el seguimiento y control de procesos dentro del ámbito del Control Estadístico de Calidad (SPC, por su nombre en inglés), ayudando a los usuarios a determinar si un proceso opera bajo control estadístico y a identificar posibles fuentes de variabilidad que puedan influir en su rendimiento.
 
-## Installation
+## Instalación
 
 You can install the development version of r6qcr from [GitHub](https://github.com/) with:
 
@@ -29,15 +29,24 @@ You can install the development version of r6qcr from [GitHub](https://github.co
 pak::pak("Bryanjat/r6qcr")
 ```
 
-## Example
-
 ```{r}
-## librerias
-library(qcr)
+library(r6qcr)
 ```
 
 
+## Ejemplos
+
+```{r}
+## librerias
+suppressWarnings(suppressMessages(library(qcr)))
+```
+
+El paquete qcr en R está diseñado para proporcionar herramientas que permitan la creación y el análisis de gráficos de control, los cuales son fundamentales para monitorear y controlar procesos dentro del marco del Control Estadístico de Calidad (SPC, por sus siglas en inglés). Estos gráficos ayudan a los usuarios a evaluar si un proceso se encuentra bajo control estadístico y a identificar posibles fuentes de variabilidad que puedan afectar su desempeño.
+
+
 ### fdqcd (Functional data quality control) 
+
+Los datos funcionales son observaciones que se registran como funciones continuas en un dominio, como tiempo, espacio o frecuencia. 
 
 ```{r}
 m <- 30
@@ -54,7 +63,7 @@ plot(fdchart,type="l",col="red")
 
 ### npqcs.r
 
-This function is used to compute statistics required by the r chart.
+El gráfico R es un tipo de gráfico de control que se utiliza en el Control Estadístico de Calidad para monitorear la variabilidad dentro de los subgrupos de un proceso. Evalúa si la dispersión (rango) de los datos en cada subgrupo está bajo control estadístico.
 
 ```{r}
 set.seed(356)

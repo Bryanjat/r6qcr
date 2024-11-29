@@ -1,14 +1,20 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# r6qcr
+# Descripcion general
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-La meta de r6qcr es poder realizar una clase madre con otros paquetes
+El paquete qcr en R tiene como propósito principal ofrecer herramientas
+para crear y analizar gráficos de control de calidad. Está orientado a
+simplificar el seguimiento y control de procesos dentro del ámbito del
+Control Estadístico de Calidad (SPC, por su nombre en inglés), ayudando
+a los usuarios a determinar si un proceso opera bajo control estadístico
+y a identificar posibles fuentes de variabilidad que puedan influir en
+su rendimiento.
 
-## Installation
+## Instalación
 
 You can install the development version of r6qcr from
 [GitHub](https://github.com/) with:
@@ -18,56 +24,29 @@ You can install the development version of r6qcr from
 pak::pak("Bryanjat/r6qcr")
 ```
 
-## Example
+``` r
+library(r6qcr)
+```
+
+## Ejemplos
 
 ``` r
 ## librerias
-library(qcr)
-#> Warning: package 'qcr' was built under R version 4.3.3
-#> Loading required package: qcc
-#> Warning: package 'qcc' was built under R version 4.3.3
-#> Package 'qcc' version 2.7
-#> Type 'citation("qcc")' for citing this R package in publications.
-#> Loading required package: fda.usc
-#> Loading required package: fda
-#> Warning: package 'fda' was built under R version 4.3.3
-#> Loading required package: splines
-#> Loading required package: fds
-#> Warning: package 'fds' was built under R version 4.3.3
-#> Loading required package: rainbow
-#> Warning: package 'rainbow' was built under R version 4.3.3
-#> Loading required package: MASS
-#> Loading required package: pcaPP
-#> Warning: package 'pcaPP' was built under R version 4.3.3
-#> Loading required package: RCurl
-#> Warning: package 'RCurl' was built under R version 4.3.3
-#> Loading required package: deSolve
-#> Warning: package 'deSolve' was built under R version 4.3.3
-#> 
-#> Attaching package: 'fda'
-#> The following object is masked from 'package:graphics':
-#> 
-#>     matplot
-#> Loading required package: mgcv
-#> Loading required package: nlme
-#> Warning: package 'nlme' was built under R version 4.3.3
-#> This is mgcv 1.9-0. For overview type 'help("mgcv-package")'.
-#> Loading required package: knitr
-#> Warning: package 'knitr' was built under R version 4.4.0
-#>  fda.usc is running sequentially usign foreach package
-#>  Please, execute ops.fda.usc() once to run in local parallel mode
-#>  Deprecated functions: min.basis, min.np, anova.hetero, anova.onefactor, anova.RPm
-#>  New functions: optim.basis, optim.np, fanova.hetero, fanova.onefactor, fanova.RPm
-#> ----------------------------------------------------------------------------------
-#> Loading required package: mvtnorm
-#> Warning: package 'mvtnorm' was built under R version 4.4.0
-#> 
-#>  Package qcr: Quality Control Review 
-#>  version 1.4 (built on 2022-02-15).
-#>  Copyright Miguel A. Flores Sanchez 2016-2022.
+suppressWarnings(suppressMessages(library(qcr)))
 ```
 
+El paquete qcr en R está diseñado para proporcionar herramientas que
+permitan la creación y el análisis de gráficos de control, los cuales
+son fundamentales para monitorear y controlar procesos dentro del marco
+del Control Estadístico de Calidad (SPC, por sus siglas en inglés).
+Estos gráficos ayudan a los usuarios a evaluar si un proceso se
+encuentra bajo control estadístico y a identificar posibles fuentes de
+variabilidad que puedan afectar su desempeño.
+
 ### fdqcd (Functional data quality control)
+
+Los datos funcionales son observaciones que se registran como funciones
+continuas en un dominio, como tiempo, espacio o frecuencia.
 
 ``` r
 m <- 30
@@ -82,11 +61,14 @@ fdchart <- fdqcd(mdata)
 plot(fdchart,type="l",col="red")
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ### npqcs.r
 
-This function is used to compute statistics required by the r chart.
+El gráfico R es un tipo de gráfico de control que se utiliza en el
+Control Estadístico de Calidad para monitorear la variabilidad dentro de
+los subgrupos de un proceso. Evalúa si la dispersión (rango) de los
+datos en cada subgrupo está bajo control estadístico.
 
 ``` r
 set.seed(356)
@@ -150,4 +132,4 @@ summary(res.npqcs)
 plot(res.npqcs,title =" r Control Chart")
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
